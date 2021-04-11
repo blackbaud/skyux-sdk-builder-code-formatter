@@ -1,0 +1,7 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": true,
+  "prettier.configPath": "node_modules/@skyux-sdk/builder-code-formatter/config/prettier/.prettierrc.json",
+  "prettier.ignorePath": "node_modules/@skyux-sdk/builder-code-formatter/config/prettier/.prettierignore"
+}

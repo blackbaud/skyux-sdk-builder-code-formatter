@@ -1,0 +1,14 @@
+.github
+.nyc_output
+coverage
+dist
+node_modules
+package-lock.json
+screenshots-baseline
+screenshots-baseline-local
+screenshots-diff-local
+*.gif
+*.html
+*.jpeg
+*.jpg
+*.png
