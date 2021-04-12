@@ -14,10 +14,13 @@ async function getPrettierConfig() {
 }
 
 function getProjectFiles() {
-  const files = glob.sync(path.join(process.cwd(), '**/*+(.js|.ts|.json)'), {
-    nodir: true,
-    ignore: ['**/node_modules/**']
-  });
+  const files = glob.sync(
+    path.join(process.cwd(), '**/*+(.js|.ts|.json|.html)'),
+    {
+      nodir: true,
+      ignore: ['**/node_modules/**']
+    }
+  );
   return files;
 }
 
