@@ -123,41 +123,46 @@ async function formatFiles(config) {
 function logHelpInfo() {
   console.log(`
 *=====================================================================*
-| SKY UX Format                                                       |
-| Usage: skyux format [options]                                       |
+| SKY UX Code Formatter                                               |
 *=====================================================================*
 
-  Formats local source code.
+  format
+    Formats all source files.
 
-  --check
+  format-check
     Throws an error if any source file is not formatted correctly.
 
-  --setup
+  format-setup
     Adds the appropriate configuration to automatically format code when a file is saved.
 `);
 }
 
 module.exports = {
-  runCommand: async (command, argv) => {
-    if (command === 'format') {
+  runCommand: async (command) => {
+    if (command === 'help') {
+      logHelpInfo();
+      return;
+    }
+
+    if (
+      command === 'format' ||
+      command === 'format-check' ||
+      command === 'format-setup'
+    ) {
       const config = await getPrettierConfig();
-
-      if (argv.check) {
-        await checkFiles(config);
-        return;
+      switch (command) {
+        case 'format':
+          await formatFiles(config);
+          break;
+        case 'format-check':
+          await checkFiles(config);
+          break;
+        case 'format-setup':
+          setupAutosaveFunctionality();
+          break;
+        default:
+          break;
       }
-
-      if (argv.setup) {
-        setupAutosaveFunctionality();
-        return;
-      }
-
-      if (argv['help']) {
-        logHelpInfo();
-        return;
-      }
-
-      await formatFiles(config);
     }
   }
 };
