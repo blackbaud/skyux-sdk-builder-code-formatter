@@ -22,7 +22,7 @@ function getProjectFiles() {
 }
 
 function getFileInfo(file) {
-  const ignorePath = path.join(__dirname, 'prettier/.prettierignore');
+  const ignorePath = path.join(__dirname, 'config/prettier/.prettierignore');
   return prettier.getFileInfo(file, {
     ignorePath
   });
@@ -56,6 +56,7 @@ function setupAutosaveFunctionality() {
 }
 
 async function checkFiles(config) {
+  console.log('Checking for unformatted files...');
   try {
     const unformatted = [];
     await processFiles(config, (file, contents) => {
@@ -67,9 +68,14 @@ async function checkFiles(config) {
     if (unformatted.length) {
       throw new Error(`
 *========================================*
-| The following files are not formatted: |
+| Found ${unformatted.length} unformatted file(s):
 *========================================*
-  --> ${unformatted.join('\n  --> ')}\n`);
+  --> ${unformatted.join('\n  --> ')}\n
+
+  Found ${
+    unformatted.length
+  } unformatted file(s). Run \`skyux format\` to format these files.
+`);
     } else {
       console.log('All files are formatted correctly.');
     }
