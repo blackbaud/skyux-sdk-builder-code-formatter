@@ -1,5 +1,7 @@
 .github
 .nyc_output
+.skypageslocales
+.skypagestmp
 coverage
 dist
 node_modules
@@ -8,7 +10,6 @@ screenshots-baseline
 screenshots-baseline-local
 screenshots-diff-local
 *.gif
-*.html
 *.jpeg
 *.jpg
 *.png
