@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
 const prettier = require('prettier');
-const vscode = require('./lib/vscode');
+const { mergeJson } = require('./lib/merge-json');
 
 async function getPrettierConfig() {
   const configFilePath = path.join(
@@ -49,12 +49,22 @@ function processFiles(config, callback) {
   return Promise.all(promises);
 }
 
-function setupAutosaveFunctionality() {
+function setupLocalFiles() {
   console.log(
-    'Modifying local .vcode settings to setup autosave functionality.'
+    'Modifying local configuration to setup autosave functionality...'
   );
-  vscode.modifySettingsFile('settings.json');
-  vscode.modifySettingsFile('extensions.json');
+  mergeJson(
+    path.join(process.cwd(), '.vscode/settings.json'),
+    path.join(__dirname, 'config/prettier/.vscode/settings.json')
+  );
+  mergeJson(
+    path.join(process.cwd(), '.vscode/extensions.json'),
+    path.join(__dirname, 'config/prettier/.vscode/extensions.json')
+  );
+  mergeJson(
+    path.join(process.cwd(), 'tslint.json'),
+    path.join(__dirname, 'config/prettier/tslint.json')
+  );
   console.log('Autosave functionality setup successfully.');
 }
 
@@ -161,7 +171,7 @@ module.exports = {
           await checkFiles(config);
           break;
         case 'format-setup':
-          setupAutosaveFunctionality();
+          setupLocalFiles();
           break;
         default:
           break;
