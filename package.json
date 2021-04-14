@@ -1,9 +1,10 @@
 {
   "name": "@skyux-sdk/builder-code-formatter",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "SKY UX CLI plugin used to format source code.",
   "main": "index.js",
   "scripts": {
+    "build": "node ./scripts/prepare-package.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,9 +20,12 @@
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "2.0.2",
     "fs-extra": "9.1.0",
-    "glob": "7.1.6",
     "lodash.mergewith": "4.6.2",
     "prettier": "2.2.1",
     "tslint-config-prettier": "1.18.0"
+  },
+  "devDependencies": {
+    "glob": "7.1.6",
+    "rimraf": "3.0.2"
   }
 }
