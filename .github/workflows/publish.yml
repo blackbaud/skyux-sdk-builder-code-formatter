@@ -4,26 +4,24 @@ on:
   push:
     tags:
       - '*.*.*'
+      - '*.*.*-rc.*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
     # Setup .npmrc file to publish to npm
     - uses: actions/setup-node@v1
       with:
-        node-version: '10'
+        node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
-    - name: Install & build
+    - name: Build
       run: |
         npm install
         npm run build
     - name: Publish
-      run: |
-        cd dist
-        npm publish
+      run: npm publish
+      working-directory: dist
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
