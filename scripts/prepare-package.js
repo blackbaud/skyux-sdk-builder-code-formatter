@@ -13,10 +13,7 @@ const distPath = path.join(rootPath, 'dist');
 function copyFiles() {
   fs.ensureDirSync(distPath);
   const files = glob.sync(
-    path.join(
-      rootPath,
-      '{index.js,package.json,README.md,/lib/**/*.js,/config/**/*}'
-    ),
+    path.join(rootPath, '{index.js,package.json,README.md,src/**/*}'),
     {
       nodir: true,
       ignore: ['**/*.spec.js'],

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./scripts/prepare-package.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "coverage": "nyc jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "lint": "./node_modules/.bin/eslint src/*.js",
+    "test": "npm run lint && npm run coverage"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,18 @@
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "2.0.2",
     "fs-extra": "9.1.0",
+    "glob": "7.1.6",
     "lodash.mergewith": "4.6.2",
     "prettier": "2.2.1",
     "tslint-config-prettier": "1.18.0"
   },
   "devDependencies": {
-    "glob": "7.1.6",
+    "eslint": "7.24.0",
+    "eslint-config-prettier": "8.2.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "jasmine": "3.5.0",
+    "jasmine-spec-reporter": "5.0.2",
+    "nyc": "15.0.1",
     "rimraf": "3.0.2"
   }
 }
