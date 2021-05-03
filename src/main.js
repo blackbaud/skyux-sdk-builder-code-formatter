@@ -7,7 +7,7 @@ const { mergeJson } = require('./lib/merge-json');
 async function getPrettierConfig() {
   const configFilePath = path.join(
     __dirname,
-    'config/prettier/.prettierrc.json'
+    'config/prettier/.prettierrc.js'
   );
   const config = await prettier.resolveConfig(configFilePath);
   return config;

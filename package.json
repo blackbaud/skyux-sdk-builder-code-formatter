@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Blackbaud-SteveBrush/code-formatter#readme",
   "dependencies": {
-    "@trivago/prettier-plugin-sort-imports": "2.0.2",
+    "@skyux-sdk/prettier-plugin-sort-imports": "4.0.0-alpha.0",
     "fs-extra": "9.1.0",
     "glob": "7.1.6",
     "lodash.mergewith": "4.6.2",
